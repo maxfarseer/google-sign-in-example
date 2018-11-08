@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import * as Sentry from '@sentry/browser'
 import { User } from './User'
 import './App.css'
 
-class App extends Component {
+/* const qq = null */
+
+class App extends React.Component {
   state = {
     name: null,
     imgUrl: null,
@@ -41,14 +44,30 @@ class App extends Component {
       })
     })
   }
+  errorHandler = () => {
+    try {
+      throw new Error('click on error btn')
+    } catch (err) {
+      console.warn(err)
+      Sentry.captureMessage('Something went wrong')
+    }
+  }
   render() {
     const { name, imgUrl } = this.state
     return (
       <div className="App">
         <header className="App-header">
+          <button onClick={this.errorHandler}>error</button>
+          {/* <p>{qq.length}</p> */}
           {!name && <button onClick={this.signIn}>Log in</button>}
           {!!name && <button onClick={this.signOut}>Log out</button>}
-          {!!name && <User name={name} imgUrl={imgUrl} />}
+          {!!name && (
+            <User
+              name={name}
+              imgUrl={imgUrl}
+              errorHandler={this.errorHandler}
+            />
+          )}
         </header>
       </div>
     )
