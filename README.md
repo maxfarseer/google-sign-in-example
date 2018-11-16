@@ -1,6 +1,6 @@
 Пример авторизации с помощью Google Sign In
 
-Пригодится, для [третьего тестового задания](https://github.com/maxfarseer/tz-webinars) (указать ветку)
+Пригодится, для [третьего тестового задания](https://maxpfrontend.ru/zametki/testovoe-zadanie-3/)
 
 ---
 
